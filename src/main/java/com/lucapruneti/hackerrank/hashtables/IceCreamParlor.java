@@ -19,20 +19,6 @@ public class IceCreamParlor {
         public int getB() {
             return b;
         }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Tuple tuple = (Tuple) o;
-            return a == tuple.a &&
-                    b == tuple.b;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(a, b);
-        }
     }
 
     /**
@@ -43,17 +29,22 @@ public class IceCreamParlor {
 
         Map<Integer, Integer> menu = new HashMap<>();
 
+        int idx1 = -1;
+        int idx2 = -1;
+
         for (int i = 0; i < cost.length; i++) {
             int tmpCost = cost[i];
             int diff = money - tmpCost;
 
             if (menu.containsKey(diff)) {
-                System.out.println(menu.get(diff) + " " + (i + 1));
-                return new Tuple(menu.get(diff), i + 1);
-            } else
+                idx1 = menu.get(diff);
+                idx2 = i + 1;
+                System.out.println(idx1 + " " + idx2);
+                break;
+            } else if (tmpCost < money)
                 menu.put(tmpCost, i + 1);
         }
 
-        throw new UnsupportedOperationException("Not Found");
+        return new Tuple(idx1, idx2);
     }
 }
