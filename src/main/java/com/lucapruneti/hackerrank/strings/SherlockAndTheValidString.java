@@ -18,15 +18,15 @@ public class SherlockAndTheValidString {
     static String isValid(String s) {
 
         // a = 97 ... z = 122
-        int[] occurences = new int[26];
+        int[] occurrences = new int[26];
 
         for (char c : s.toCharArray()) {
             int idx = (int) c % 97;
-            occurences[idx] += 1;
+            occurrences[idx] += 1;
         }
 
         Map<Integer, Integer> map = new HashMap<>();
-        for (int i : occurences) {
+        for (int i : occurrences) {
             if (i > 0) {
                 if (!map.containsKey(i))
                     map.put(i, 0);
@@ -35,10 +35,10 @@ public class SherlockAndTheValidString {
             }
         }
 
-        //count how many type of occurencies I have
+        //count how many type of occurrences I have
         List<Integer> keyDistinct = map.keySet().stream().distinct().collect(Collectors.toList());
 
-        //more than two different occurencies
+        //more than two different occurrences
         if (keyDistinct.size() > 2) {
             return "NO";
         }
@@ -61,7 +61,7 @@ public class SherlockAndTheValidString {
             return (remChar == 0 || remChar == maxEntry.getKey()) ? "YES" : "NO";
         }
 
-        //all the occurencies are the same
+        //all the occurrences are the same
         return keyDistinct.size() == 1 ? "YES" : "NO";
     }
 
@@ -72,11 +72,8 @@ public class SherlockAndTheValidString {
      */
     static int comparing(Map.Entry<Integer, Integer> e1, Map.Entry<Integer, Integer> e2){
 
-        if(e1.getValue() < e2.getValue())
-            return -1;
-
-        if(e1.getValue() > e2.getValue())
-            return 1;
+        if(e1.getValue() != e2.getValue())
+            return e1.getValue().compareTo(e2.getValue());
 
         return e1.getKey().compareTo(e2.getKey());
     }
