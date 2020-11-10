@@ -15,6 +15,11 @@ public class SinglyLinkedListNode {
         this.data = data;
     }
 
+    public SinglyLinkedListNode(Integer data, SinglyLinkedListNode next) {
+        this.data = data;
+        this.next = next;
+    }
+
     public Integer getData() {
         return data;
     }

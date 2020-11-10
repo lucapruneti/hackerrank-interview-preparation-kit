@@ -24,4 +24,17 @@ public class SinglyLinkedList {
         }
     }
 
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+        SinglyLinkedListNode current = this.head;
+        while(current != null){
+            sb.append(current.data);
+            sb.append(" ");
+            current = current.getNext();
+        }
+
+        return sb.toString().trim();
+    }
 }
